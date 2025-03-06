@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://crt0phxtng3aa"]
+
+[ext_resource type="Script" uid="uid://dkvott574m1ak" path="res://scenes/monster/monster_base.gd" id="1_0uadr"]
+[ext_resource type="SpriteFrames" uid="uid://e5npmare60lg" path="res://resources/sprite-frames/monster1.tres" id="2_q0g1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0g1p"]
+size = Vector2(16, 15)
+
+[node name="MonsterBase" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_0uadr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_q0g1p")
+animation = &"walk-down"
+
+[node name="Area2D" type="Area2D" parent="." groups=["monsters"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_q0g1p")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
