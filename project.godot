@@ -17,8 +17,17 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=900
+window/size/viewport_width=1200
+window/size/viewport_height=800
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "yellow",
+"res://models/": "blue",
+"res://resources/": "green",
+"res://scenes/": "gray"
+}
 
 [global_group]
 
@@ -59,10 +68,10 @@ ui_down={
 ]
 }
 
-[physics]
+[layer_names]
 
-2d/default_gravity=0.0
-2d/default_gravity_vector=Vector2(0, 0)
+2d_physics/layer_1="player"
+2d_physics/layer_2="monster"
 
 [rendering]
 
