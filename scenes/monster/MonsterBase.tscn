@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dkvott574m1ak" path="res://scenes/monster/monster_base.gd" id="1_0uadr"]
 [ext_resource type="SpriteFrames" uid="uid://e5npmare60lg" path="res://resources/sprite-frames/monster1.tres" id="2_q0g1p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q0g1p"]
-size = Vector2(16, 16)
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0g1p"]
+radius = 6.0
 
 [node name="MonsterBase" type="CharacterBody2D"]
 texture_filter = 1
@@ -18,5 +18,5 @@ sprite_frames = ExtResource("2_q0g1p")
 animation = &"walk-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.38419e-07, 0)
-shape = SubResource("RectangleShape2D_q0g1p")
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_q0g1p")

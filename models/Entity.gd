@@ -7,8 +7,9 @@ class_name Entity
 @export var speed: float = 100.0
 @export var ID: String = ""
 
-var scale_factor: float = 2.0  # Escala inicial
+var current_scale: Vector2 = Vector2(5, 5)
 var animated_sprite: AnimatedSprite2D
+const collision_area_start_position = Vector2(0, 5)
 
 func _ready():
     animated_sprite = $AnimatedSprite2D
@@ -16,16 +17,19 @@ func _ready():
     animated_sprite.play("walk-down")
     animated_sprite.stop()
 
-    set_entity_scale(scale_factor)  # Aplicar la escala inicial
+    set_entity_scale(current_scale)  # Aplicar la escala inicial
 
-func set_entity_scale(factor: float):
-    scale_factor = factor
+func set_entity_scale(scale_factor: Vector2):
     animated_sprite = $AnimatedSprite2D
     var collision_shape = $CollisionShape2D
 
-    animated_sprite.scale = Vector2(scale_factor, scale_factor)
-    collision_shape.scale = Vector2(scale_factor, scale_factor)
-
-    # # Imprimir las escalas globales
-    # print("Escala global de AnimatedSprite2D: ", animated_sprite.global_transform.get_scale())
-    # print("Escala global de CollisionShape2D: ", collision_shape.scale)
+    animated_sprite.scale.x *= scale_factor.x
+    animated_sprite.scale.y *= scale_factor.y
+    collision_shape.scale.x *= scale_factor.x
+    collision_shape.scale.y *= scale_factor.y
+    collision_shape.position.x = collision_area_start_position.x * scale_factor.x
+    collision_shape.position.y = collision_area_start_position.y * scale_factor.y
+    print(animated_sprite.position.x)
+    print(animated_sprite.position.y)
+    print(collision_shape.position.x)
+    print(collision_shape.position.y)
