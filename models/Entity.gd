@@ -29,7 +29,6 @@ func set_entity_scale(scale_factor: Vector2):
     collision_shape.scale.y *= scale_factor.y
     collision_shape.position.x = collision_area_start_position.x * scale_factor.x
     collision_shape.position.y = collision_area_start_position.y * scale_factor.y
-    print(animated_sprite.position.x)
-    print(animated_sprite.position.y)
-    print(collision_shape.position.x)
-    print(collision_shape.position.y)
+
+func _process(_delta: float) -> void:
+    z_index = int(position.y)  # Ordena los objetos según el eje Y

@@ -7,6 +7,7 @@ var direction: Vector2 = Vector2.ZERO
 func _ready():
     super._ready()
     position = get_viewport_rect().size / 2
+    speed = 200
 
 
 func _physics_process(_delta):
