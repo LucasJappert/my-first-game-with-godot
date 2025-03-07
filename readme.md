@@ -11,8 +11,7 @@ This is an open-source project built with **Godot 4.4**. Feel free to explore, m
 ## 🚀 Getting Started
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/project-name.git
-   cd project-name
+   git clone https://github.com/LucasJappert/my-first-game-with-godot
    ```
 2. Open the project in **Godot 4.4**.
 3. Run the project and start exploring!
