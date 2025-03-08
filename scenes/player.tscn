@@ -8,6 +8,7 @@ radius = 13.0
 
 [node name="MyPlayer" type="CharacterBody2D"]
 z_index = 1
+z_as_relative = false
 texture_filter = 1
 script = ExtResource("1_g2els")
 

@@ -42,6 +42,6 @@ func update_after_physics_process():
         animated_sprite.stop()
 
     if previous_direction != current_direction and current_direction != Vector2.ZERO:
-        print("Direction changed from ", previous_direction, " to ", current_direction)
+        # print("Direction changed from ", previous_direction, " to ", current_direction)
         previous_direction = current_direction
         animated_sprite.flip_h = current_direction.x < 0

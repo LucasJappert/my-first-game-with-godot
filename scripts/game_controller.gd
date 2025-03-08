@@ -1,9 +1,8 @@
 extends Node2D
 
-# Ruta de la escena base del monstruo
 const ENEMY_SCENE = preload("res://scenes/enemy.tscn")
 const PLAYER_SCENE = preload("res://scenes/player.tscn")
-const TILEMAP_SCENE = preload("res://scenes/tilemap.tscn")
+const TILEMAP_SCENE = preload("res://scenes/world.tscn")
 
 # Carga los recursos SpriteFrames directamente en el código
 const ENEMY1_SPRITE_FRAMES = preload("res://resources/sprite-frames/monster1.tres")
@@ -11,19 +10,21 @@ const ENEMY2_SPRITE_FRAMES = preload("res://resources/sprite-frames/monster2.tre
 
 const PLAYER_SPRITES = preload("res://resources/sprite-frames/player.tres")
 
+var camera: Camera2D  # Almacenar la cámara
+var zoom_level := 1.0  # Zoom inicial
+var zoom_step := 0.1   # Cantidad de zoom por scroll
+var zoom_min := 0.5    # Zoom mínimo
+var zoom_max := 2.0    # Zoom máximo
+
 func _ready():
 	print("Creating camera")
-	var camera = _create_camera()
+	camera = _create_camera()
 
 	print("Add the tilemap")
-	var tilemap = TILEMAP_SCENE.instantiate()
-	print(tilemap.z_index)
-	add_child(tilemap)
+	var terrain = TILEMAP_SCENE.instantiate()
+	add_child(terrain)
 
-	print("Add the player")
-	var my_player = _spawn_player()
-	# Asignar el jugador como objetivo de la cámara
-	my_player.add_child(camera)
+	_spawn_player()
 
 	print("Add some enemies")
 	for i in range(35):  # Genera 5 monstruos
@@ -36,7 +37,7 @@ func _ready():
 
 func _create_camera():
 	# Crear un nuevo nodo Camera2D
-	var camera = Camera2D.new()
+	camera = Camera2D.new()
 	
 	# Configurar la cámara
 	camera.position = Vector2.ZERO  # Posición inicial en (0, 0)          # Controla la intensidad del suavizado (valores más pequeños = más suave)
@@ -56,15 +57,28 @@ func _spawn_enemy(sprite_frames: SpriteFrames, id: int = 0):
 	add_child(new_enemy)
 
 func _spawn_player():
+	print("Add the player")
 	var player = PLAYER_SCENE.instantiate()
 	player.sprite_frames = PLAYER_SPRITES
 	player.position = Vector2(0, 0)
+	# Asignar el jugador como objetivo de la cámara
+	if camera:
+		player.add_child(camera)
 	add_child(player)
 
 	return player
 
 # Agregamos la lógica para que se cierre el juego al presionar escape
 func _unhandled_input(event):
+	# Zoom con scroll del mouse
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom_level = max(zoom_level - zoom_step, zoom_min)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom_level = min(zoom_level + zoom_step, zoom_max)
+		
+		camera.zoom = Vector2.ONE * zoom_level  # Aplicar el nuevo zoom
+
 	# Verifica si se presionó la tecla Escape
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_ESCAPE:

@@ -3,7 +3,7 @@ extends Entity
 func _ready():
     collision_area_start_position = Vector2(0, 20)
     super._ready()
-    speed = 200
+    speed = 300
 
 func _physics_process(_delta):
     current_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
