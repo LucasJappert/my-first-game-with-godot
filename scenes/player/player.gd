@@ -1,21 +1,17 @@
 extends Entity
 
-
-# Dirección actual
-var direction: Vector2 = Vector2.ZERO
-
 func _ready():
+    collision_area_start_position = Vector2(0, 20)
     super._ready()
     position = get_viewport_rect().size / 2
     speed = 200
 
-
 func _physics_process(_delta):
-    direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+    current_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
     velocity = Vector2.ZERO
     
-    if direction != Vector2.ZERO:
-        velocity = direction * speed
+    if current_direction != Vector2.ZERO:
+        velocity = current_direction * speed
         
         move_and_slide()
         for i in get_slide_collision_count():
@@ -23,16 +19,6 @@ func _physics_process(_delta):
             var object = collision.get_collider()
             if object is Entity:
                 print("I collided with ", object.ID)
-        
-        # var collision = move_and_collide(velocity * _delta)
-        # if collision:
-        #     var object = collision.get_collider()
-        #     if object is Entity:
-        #         print("I collided with ", object.ID)
-        #     velocity = Vector2.ZERO  # Detiene el movimiento completamente
 
+    update_after_physics_process()
 
-    if direction != Vector2.ZERO:
-        animated_sprite.play("walk-down")
-    else:
-        animated_sprite.stop()

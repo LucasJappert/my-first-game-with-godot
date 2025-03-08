@@ -1,18 +1,18 @@
 [gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://e5npmare60lg"]
 
-[ext_resource type="Texture2D" uid="uid://dx2xcmqxgq0v8" path="res://assets/monsters/tileset1.png" id="1_g4msk"]
+[ext_resource type="Texture2D" uid="uid://c7v0lqb66uppf" path="res://assets/monsters/monsters_tileset.png" id="1_g4msk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1lt8"]
 atlas = ExtResource("1_g4msk")
-region = Rect2(0, 64, 16, 16)
+region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m0lml"]
 atlas = ExtResource("1_g4msk")
-region = Rect2(16, 64, 16, 16)
+region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sr4cy"]
 atlas = ExtResource("1_g4msk")
-region = Rect2(32, 64, 16, 16)
+region = Rect2(128, 64, 64, 64)
 
 [resource]
 animations = [{

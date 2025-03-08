@@ -6,10 +6,12 @@ class_name Entity
 @export var sprite_frames: SpriteFrames
 @export var speed: float = 100.0
 @export var ID: String = ""
+@export var collision_area_start_position = Vector2(0, 0)
+@export var current_direction: Vector2 = Vector2.ZERO
+@export var previous_direction = Vector2.ZERO
 
-var current_scale: Vector2 = Vector2(5, 5)
+var current_scale: Vector2 = Vector2(1, 1)
 var animated_sprite: AnimatedSprite2D
-const collision_area_start_position = Vector2(0, 5)
 
 func _ready():
     animated_sprite = $AnimatedSprite2D
@@ -32,3 +34,14 @@ func set_entity_scale(scale_factor: Vector2):
 
 func _process(_delta: float) -> void:
     z_index = int(position.y)  # Ordena los objetos según el eje Y
+
+func update_after_physics_process():
+    if current_direction != Vector2.ZERO:
+        animated_sprite.play("walk-down")
+    else:
+        animated_sprite.stop()
+
+    if previous_direction != current_direction and current_direction != Vector2.ZERO:
+        print("Direction changed from ", previous_direction, " to ", current_direction)
+        previous_direction = current_direction
+        animated_sprite.flip_h = current_direction.x < 0

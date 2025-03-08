@@ -4,6 +4,7 @@ extends Entity
 var direction: Vector2 = Vector2.DOWN
 
 func _ready():
+	collision_area_start_position = Vector2(0, 20)
 	super._ready()
 
 

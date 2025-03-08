@@ -1,30 +1,30 @@
 [gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://wyh8p22qf3ml"]
 
-[ext_resource type="Texture2D" uid="uid://dx2xcmqxgq0v8" path="res://assets/monsters/tileset1.png" id="1_g4msk"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4r58"]
-atlas = ExtResource("1_g4msk")
-region = Rect2(48, 64, 16, 16)
+[ext_resource type="Texture2D" uid="uid://c7v0lqb66uppf" path="res://assets/monsters/monsters_tileset.png" id="1_k4r58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fpm6u"]
-atlas = ExtResource("1_g4msk")
-region = Rect2(64, 64, 16, 16)
+atlas = ExtResource("1_k4r58")
+region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2qcgb"]
-atlas = ExtResource("1_g4msk")
-region = Rect2(80, 64, 16, 16)
+atlas = ExtResource("1_k4r58")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lughu"]
+atlas = ExtResource("1_k4r58")
+region = Rect2(128, 128, 64, 64)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k4r58")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fpm6u")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2qcgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lughu")
 }],
 "loop": true,
 "name": &"walk-down",
