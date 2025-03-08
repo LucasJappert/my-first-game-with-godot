@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c7q4uv1r04q3k"]
+
+[ext_resource type="Texture2D" uid="uid://cvwy6p2jagtlq" path="res://assets/grass-earth-64.png" id="1_exxwp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lohjx"]
+texture = ExtResource("1_exxwp")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+terrain_set_0/mode = 0
+sources/2 = SubResource("TileSetAtlasSource_lohjx")
