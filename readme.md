@@ -31,6 +31,10 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 If you have any questions, feel free to reach out!
 
 ## 📸 Screenshots
+
+- 2025-03-08
+![alt text](image-2.png)
+
 - 2025-03-07
 ![alt text](image-1.png)
 ![alt text](image.png)
