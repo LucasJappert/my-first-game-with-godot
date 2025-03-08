@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://crt0phxtng3aa"]
 
-[ext_resource type="Script" uid="uid://dkvott574m1ak" path="res://scenes/monster/monster_base.gd" id="1_0uadr"]
-[ext_resource type="SpriteFrames" uid="uid://e5npmare60lg" path="res://resources/sprite-frames/monster1.tres" id="2_q0g1p"]
+[ext_resource type="Script" uid="uid://dkvott574m1ak" path="res://scripts/enemy.gd" id="1_6r6k6"]
+[ext_resource type="SpriteFrames" uid="uid://e5npmare60lg" path="res://resources/sprite-frames/monster1.tres" id="2_vewo3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0g1p"]
 radius = 13.0
 
 [node name="MonsterBase" type="CharacterBody2D"]
 texture_filter = 1
-script = ExtResource("1_0uadr")
+script = ExtResource("1_6r6k6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = ExtResource("2_q0g1p")
+sprite_frames = ExtResource("2_vewo3")
 animation = &"walk-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
