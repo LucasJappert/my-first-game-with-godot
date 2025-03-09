@@ -7,16 +7,23 @@
 radius = 13.0
 
 [node name="Enemy" type="CharacterBody2D"]
-z_index = 1
+z_index = 2
 z_as_relative = false
+y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+z_as_relative = false
+y_sort_enabled = true
 texture_filter = 1
 sprite_frames = ExtResource("2_4ra3w")
 animation = &"walk-down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_q0g1p")
