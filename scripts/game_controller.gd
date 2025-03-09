@@ -71,6 +71,8 @@ func _spawn_player():
 func _spawn_monsters():
 	print("Add some enemies")
 
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 11)
+
 	_spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
 	_spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
 	_spawn_enemies_in_direction(Vector2.UP)     # Arriba
