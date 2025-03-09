@@ -27,3 +27,8 @@ z_as_relative = false
 y_sort_enabled = true
 position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_q0g1p")
+debug_color = Color(0.931252, 0.204467, 0.421695, 0.42)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 1000.0
+avoidance_enabled = true

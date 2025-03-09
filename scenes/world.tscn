@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://uehkcbftql6d"]
+[gd_scene load_steps=9 format=4 uid="uid://uehkcbftql6d"]
 
 [ext_resource type="Script" uid="uid://5p1t1s2jj8qm" path="res://scripts/world.gd" id="1_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://cvwy6p2jagtlq" path="res://assets/grass-earth-64.png" id="2_k0juu"]
@@ -6,6 +6,18 @@
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_18xon"]
 light_mode = 2
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_4wyf3"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_k0juu"]
+vertices = PackedVector2Array(32, 32, -32, 32, -32, -32, 32, -32)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4wyf3"]
 texture = ExtResource("2_k0juu")
@@ -17,90 +29,105 @@ texture_region_size = Vector2i(64, 64)
 0:3/0/terrains_peering_bit/bottom_left_corner = 0
 0:3/0/terrains_peering_bit/top_left_corner = 0
 0:3/0/terrains_peering_bit/top_right_corner = 0
+0:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 3:3/0 = 0
 3:3/0/terrain_set = 0
 3:3/0/terrains_peering_bit/bottom_right_corner = 0
 3:3/0/terrains_peering_bit/bottom_left_corner = 0
 3:3/0/terrains_peering_bit/top_left_corner = 1
 3:3/0/terrains_peering_bit/top_right_corner = 0
+3:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 0:2/0 = 0
 0:2/0/terrain_set = 0
 0:2/0/terrains_peering_bit/bottom_right_corner = 0
 0:2/0/terrains_peering_bit/bottom_left_corner = 0
 0:2/0/terrains_peering_bit/top_left_corner = 0
 0:2/0/terrains_peering_bit/top_right_corner = 1
+0:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 1:2/0 = 0
 1:2/0/terrain_set = 0
 1:2/0/terrains_peering_bit/bottom_right_corner = 0
 1:2/0/terrains_peering_bit/bottom_left_corner = 0
 1:2/0/terrains_peering_bit/top_left_corner = 1
 1:2/0/terrains_peering_bit/top_right_corner = 1
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrains_peering_bit/bottom_right_corner = 0
 0:0/0/terrains_peering_bit/bottom_left_corner = 1
 0:0/0/terrains_peering_bit/top_left_corner = 0
 0:0/0/terrains_peering_bit/top_right_corner = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4wyf3")
 3:2/0 = 0
 3:2/0/terrain_set = 0
 3:2/0/terrains_peering_bit/bottom_right_corner = 0
 3:2/0/terrains_peering_bit/bottom_left_corner = 1
 3:2/0/terrains_peering_bit/top_left_corner = 1
 3:2/0/terrains_peering_bit/top_right_corner = 0
+3:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 2:3/0 = 0
 2:3/0/terrain_set = 0
 2:3/0/terrains_peering_bit/bottom_right_corner = 0
 2:3/0/terrains_peering_bit/bottom_left_corner = 1
 2:3/0/terrains_peering_bit/top_left_corner = 0
 2:3/0/terrains_peering_bit/top_right_corner = 1
+2:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 3:1/0 = 0
 3:1/0/terrain_set = 0
 3:1/0/terrains_peering_bit/bottom_right_corner = 0
 3:1/0/terrains_peering_bit/bottom_left_corner = 1
 3:1/0/terrains_peering_bit/top_left_corner = 1
 3:1/0/terrains_peering_bit/top_right_corner = 1
+3:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 1:3/0 = 0
 1:3/0/terrain_set = 0
 1:3/0/terrains_peering_bit/bottom_right_corner = 1
 1:3/0/terrains_peering_bit/bottom_left_corner = 0
 1:3/0/terrains_peering_bit/top_left_corner = 0
 1:3/0/terrains_peering_bit/top_right_corner = 0
+1:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 0:1/0 = 0
 0:1/0/terrain_set = 0
 0:1/0/terrains_peering_bit/bottom_right_corner = 1
 0:1/0/terrains_peering_bit/bottom_left_corner = 0
 0:1/0/terrains_peering_bit/top_left_corner = 1
 0:1/0/terrains_peering_bit/top_right_corner = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_4wyf3")
 1:0/0 = 0
 1:0/0/terrain_set = 0
 1:0/0/terrains_peering_bit/bottom_right_corner = 1
 1:0/0/terrains_peering_bit/bottom_left_corner = 0
 1:0/0/terrains_peering_bit/top_left_corner = 0
 1:0/0/terrains_peering_bit/top_right_corner = 1
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 2:2/0 = 0
 2:2/0/terrain_set = 0
 2:2/0/terrains_peering_bit/bottom_right_corner = 1
 2:2/0/terrains_peering_bit/bottom_left_corner = 0
 2:2/0/terrains_peering_bit/top_left_corner = 1
 2:2/0/terrains_peering_bit/top_right_corner = 1
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 3:0/0 = 0
 3:0/0/terrain_set = 0
 3:0/0/terrains_peering_bit/bottom_right_corner = 1
 3:0/0/terrains_peering_bit/bottom_left_corner = 1
 3:0/0/terrains_peering_bit/top_left_corner = 0
 3:0/0/terrains_peering_bit/top_right_corner = 0
+3:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 2:0/0 = 0
 2:0/0/terrain_set = 0
 2:0/0/terrains_peering_bit/bottom_right_corner = 1
 2:0/0/terrains_peering_bit/bottom_left_corner = 1
 2:0/0/terrains_peering_bit/top_left_corner = 1
 2:0/0/terrains_peering_bit/top_right_corner = 0
+2:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/terrains_peering_bit/bottom_right_corner = 1
 1:1/0/terrains_peering_bit/bottom_left_corner = 1
 1:1/0/terrains_peering_bit/top_left_corner = 0
 1:1/0/terrains_peering_bit/top_right_corner = 1
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 2:1/0 = 0
 2:1/0/terrain_set = 0
 2:1/0/terrain = 1
@@ -108,6 +135,7 @@ texture_region_size = Vector2i(64, 64)
 2:1/0/terrains_peering_bit/bottom_left_corner = 1
 2:1/0/terrains_peering_bit/top_left_corner = 1
 2:1/0/terrains_peering_bit/top_right_corner = 1
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_k0juu")
 
 [sub_resource type="TileSet" id="TileSet_2itg8"]
 tile_size = Vector2i(64, 64)
@@ -116,6 +144,7 @@ terrain_set_0/terrain_0/name = "<any>"
 terrain_set_0/terrain_0/color = Color(0.933333, 0.509804, 0.933333, 1)
 terrain_set_0/terrain_1/name = "FG -grass-earth-64.png"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 
 [node name="World" type="Node2D"]
@@ -132,6 +161,8 @@ tile_set = SubResource("TileSet_2itg8")
 y_sort_origin = -1
 script = ExtResource("3_71j4m")
 metadata/_custom_type_script = "uid://dsimiic0faq4i"
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMapDual"]
 
 [node name="Entities" type="Node2D" parent="."]
 z_index = 2

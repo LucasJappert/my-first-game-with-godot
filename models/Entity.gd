@@ -33,7 +33,8 @@ func set_entity_scale(scale_factor: Vector2):
     collision_shape.position.y = collision_area_start_position.y * scale_factor.y
 
 func _process(_delta: float) -> void:
-    z_index = int(position.y)  # Ordena los objetos según el eje Y
+    pass
+    # z_index = int(position.y)  # Ordena los objetos según el eje Y
 
 func update_after_physics_process():
     if current_direction != Vector2.ZERO:
