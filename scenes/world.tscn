@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://uehkcbftql6d"]
+[gd_scene load_steps=11 format=4 uid="uid://uehkcbftql6d"]
 
 [ext_resource type="Script" uid="uid://5p1t1s2jj8qm" path="res://scripts/world.gd" id="1_4wyf3"]
 [ext_resource type="Texture2D" uid="uid://cvwy6p2jagtlq" path="res://assets/grass-earth-64.png" id="2_k0juu"]
@@ -139,6 +139,8 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_4wyf3")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qfnet"]
+
 [node name="World" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -152,12 +154,12 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAABAAAAAAAAAAMAAAABAP//AAAAAAM
 tile_set = SubResource("TileSet_2itg8")
 y_sort_origin = -1
 collision_enabled = false
-collision_visibility_mode = 1
 navigation_visibility_mode = 1
 script = ExtResource("3_71j4m")
 metadata/_custom_type_script = "uid://dsimiic0faq4i"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMapDual"]
+navigation_polygon = SubResource("NavigationPolygon_qfnet")
 use_edge_connections = false
 
 [node name="Entities" type="Node2D" parent="."]

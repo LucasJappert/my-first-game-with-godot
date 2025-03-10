@@ -19,7 +19,7 @@ var zoom_min := 0.5    # Zoom mínimo
 var zoom_max := 2.0    # Zoom máximo
 
 
-var player: Entity
+@export var player: Entity
 
 func _ready():
 
@@ -47,6 +47,7 @@ func _create_camera():
 
 func _spawn_enemy(sprite_frames: SpriteFrames, _position: Vector2, id: int = 0):
 	var new_enemy = ENEMY_SCENE.instantiate()
+	new_enemy.set_player(player)
 	
 	# var screen = get_viewport_rect().size
 	new_enemy.position = _position # Vector2(randf() * screen.x - screen.x/2, randf() * screen.y - screen.y/2)
@@ -54,10 +55,6 @@ func _spawn_enemy(sprite_frames: SpriteFrames, _position: Vector2, id: int = 0):
 	new_enemy.sprite_frames = sprite_frames
 
 	world.get_node("Entities").add_child(new_enemy)
-
-	# Establecer el objetivo como el jugador
-	if player:
-		new_enemy.set_target(player)
 
 func _spawn_player():
 	print("Add the player")
@@ -71,17 +68,22 @@ func _spawn_player():
 func _spawn_monsters():
 	print("Add some enemies")
 
+	_spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 2)
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 3)
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 11)
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 11)
 	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 11)
 
 	_spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
-	_spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
-	_spawn_enemies_in_direction(Vector2.UP)     # Arriba
-	_spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
+	# _spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
+	# _spawn_enemies_in_direction(Vector2.UP)     # Arriba
+	# _spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
 
 func _spawn_enemies_in_direction(direction: Vector2):
 	var TILES_DISTANCE = 7
 	var MAX_NOISE = 64
-	var NUM_ENEMIES = 10
+	var NUM_ENEMIES = 5
 
 	for i in range(NUM_ENEMIES):
 		# Generar ruido independiente para x e y

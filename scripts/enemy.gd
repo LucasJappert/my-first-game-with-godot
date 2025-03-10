@@ -1,44 +1,67 @@
 extends Entity
 
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
-@export var target: Node2D
+@onready var nav_agent: NavigationAgent2D# = $NavigationAgent2D
+var current_target_position: Vector2
 
-var last_target_position: Vector2
-var update_interval: float = 0.2
-var time_since_last_update: float = 0.0
+var target_reached = false
+var player: Entity
 
 func _ready():
-    collision_area_start_position = Vector2(0, 20)
-    super._ready()
+	collision_area_start_position = Vector2(0, 20)
+	super._ready()
+	speed = 100
 
-    last_target_position = target.position if target else Vector2.ZERO
-    nav_agent.radius = 32  # Ajusta según el tamaño del enemigo
-    nav_agent.avoidance_enabled = false  # Desactivamos la evitación automática
+	nav_agent = collision_shape.get_node("NavigationAgent2D")
+	nav_agent.avoidance_enabled = true
+	# nav_agent.radius = collision_shape.shape.get_rect().size.x * 0.5  # Ajusta según el tamaño de tu CollisionShape2D
+	nav_agent.radius = 1  # Ajusta según el tamaño de tu CollisionShape2D
+	nav_agent.neighbor_distance = 64  # Cuánto "ve" a otros enemigos
+	nav_agent.max_neighbors = 10 # Máximo de enemigos a considerar para evitar
+	nav_agent.target_desired_distance = 32
+	nav_agent.path_desired_distance = 32
+	# Conectar la señal para manejar el cálculo de la velocidad evitando colisiones
+
+func set_player(_player: Entity):
+	player = _player
+
+func _process(_delta: float):
+	label.text = ID + " - " + str(target_reached)
 
 func _physics_process(_delta: float):
-    if not target:
-        return
+	if not player:
+		return
 
-    # Actualizar la ruta si es necesario
-    time_since_last_update += _delta
-    if time_since_last_update >= update_interval:
-        if last_target_position.distance_to(target.position) > 10:
-            nav_agent.set_target_position(target.position)
-            last_target_position = target.position
-        time_since_last_update = 0.0
+	if not target_reached:
+		var axis = to_local(nav_agent.get_next_path_position()).normalized()
+		var intended_velocity = axis * speed
+		nav_agent.set_velocity(intended_velocity)
 
-    # Obtener la próxima posición en la ruta
-    var next_path_position = nav_agent.get_next_path_position()
-    if next_path_position != Vector2.ZERO:
-        var direction = (next_path_position - position).normalized()
+	super.update_after_physics_process()
 
-        # Mover hacia la siguiente posición
-        position += direction * speed * _delta
 
-        # Actualizar animación
-        current_direction = direction
-        update_after_physics_process()
 
-func set_target(new_target: Node2D):
-    target = new_target
-    nav_agent.set_target_position(target.position)
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2):
+	# Asignar la velocidad calculada por el agente
+	velocity = safe_velocity
+	move_and_slide()
+
+	# Actualizar animación
+	current_direction = safe_velocity.normalized()
+
+
+func _on_timer_timeout():
+	var player_position = player.collision_shape.global_position
+	if current_target_position != player_position:
+		current_target_position = player_position
+		target_reached = false
+		nav_agent.set_target_position(player_position)
+
+
+func _on_navigation_agent_2d_target_reached() -> void:
+	target_reached = true
+	print("Target reached by enemy %s" % ID)
+
+
+func _on_navigation_agent_2d_navigation_finished() -> void:
+	target_reached = true
+	print("Target reached by enemy %s" % ID)
