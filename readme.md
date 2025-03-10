@@ -32,6 +32,11 @@ If you have any questions, feel free to reach out!
 
 ## 📸 Screenshots
 
+- 2025-03-10
+- Enemies are walking correctly, but there is a little issue which they can walk across no walkable zones
+![alt text](image-3.png)
+![alt text](image-4.png)
+
 - 2025-03-08
 ![alt text](image-2.png)
 

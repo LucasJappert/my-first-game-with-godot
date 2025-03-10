@@ -83,7 +83,7 @@ func _spawn_monsters():
 func _spawn_enemies_in_direction(direction: Vector2):
 	var TILES_DISTANCE = 7
 	var MAX_NOISE = 64
-	var NUM_ENEMIES = 5
+	var NUM_ENEMIES = 125
 
 	for i in range(NUM_ENEMIES):
 		# Generar ruido independiente para x e y
