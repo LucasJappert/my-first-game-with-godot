@@ -15,12 +15,36 @@ class_name Entity
 var current_scale: Vector2 = Vector2(1, 1)
 var animated_sprite: AnimatedSprite2D
 
+# Variables para la vida
+@export var max_health: int = 100
+var current_health: int = max_health
+@onready var health_bar: ProgressBar = $HealthBar
+
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.sprite_frames = sprite_frames
 	animated_sprite.play("walk-down")
 	animated_sprite.stop()
+
+	# var texture = animated_sprite.sprite_frames.get_frame_texture(animated_sprite.animation, animated_sprite.frame)
+
+	if health_bar:
+		health_bar.size = Vector2(50, 5)
+		health_bar.global_position = global_position
+		health_bar.global_position = Vector2(global_position.x - health_bar.size.x / 2, global_position.y - 40)
+		
+		# Configurar estilos (fondo negro y progreso verde)
+		var bg_style = StyleBoxFlat.new()
+		bg_style.bg_color = Color(0, 0, 0)  # Fondo negro
+		health_bar.add_theme_stylebox_override("background", bg_style)
+		
+		var fg_style = StyleBoxFlat.new()
+		fg_style.bg_color = Color(0, 1, 0)  # Progreso verde
+		health_bar.add_theme_stylebox_override("fill", fg_style)
+
+		health_bar.max_value = max_health
+		health_bar.value = current_health
 
 	set_entity_scale(current_scale)  # Aplicar la escala inicial
 
@@ -48,3 +72,19 @@ func update_after_physics_process():
 		# print("Direction changed from ", previous_direction, " to ", current_direction)
 		previous_direction = current_direction
 		animated_sprite.flip_h = current_direction.x < 0
+
+# Función para recibir daño
+func take_damage(amount: int):
+	current_health -= amount
+	current_health = max(current_health, 0)  # Asegura que la vida no sea negativa
+	
+	if health_bar:
+		health_bar.value = current_health
+	
+	if current_health <= 0:
+		die()
+
+# Función para manejar la muerte
+func die():
+	print("Entity died")
+	queue_free()  # Elimina la entidad del juego

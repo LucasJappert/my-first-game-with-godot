@@ -6,7 +6,7 @@ var current_target_position: Vector2
 var target_reached = false
 var player: Entity
 
-const TARGET_DESIRED_DISTANCE = 32
+const TARGET_DESIRED_DISTANCE = 40
 
 func _ready():
     collision_area_start_position = Vector2(0, 20)
@@ -20,13 +20,14 @@ func _ready():
     nav_agent.neighbor_distance = 64  # Cuánto "ve" a otros enemigos
     nav_agent.max_neighbors = 10 # Máximo de enemigos a considerar para evitar
     nav_agent.target_desired_distance = TARGET_DESIRED_DISTANCE
-    nav_agent.path_desired_distance = 32
+    nav_agent.path_desired_distance = TARGET_DESIRED_DISTANCE * 0.5
 
 func set_player(_player: Entity):
     player = _player
 
 func _process(_delta: float):
-    label.text = ID + " - " + str(target_reached)
+    # label.text = ID + " - " + str(global_position)
+    return
 
 func _physics_process(_delta: float):
     if not player:

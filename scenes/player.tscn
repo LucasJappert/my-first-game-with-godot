@@ -18,7 +18,6 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 z_as_relative = false
-y_sort_enabled = true
 texture_filter = 1
 sprite_frames = ExtResource("2_qhqgy")
 animation = &"walk-down"
@@ -26,7 +25,6 @@ animation = &"walk-down"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
 z_as_relative = false
-y_sort_enabled = true
 position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_gmlin")
 debug_color = Color(1.70864e-06, 0.560261, 0.309016, 0.42)
@@ -39,3 +37,11 @@ offset_bottom = 55.0
 label_settings = SubResource("LabelSettings_g2els")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 2
+offset_left = -63.0
+offset_top = -67.0
+offset_right = 69.0
+offset_bottom = -34.0
+show_percentage = false

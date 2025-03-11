@@ -170,7 +170,6 @@ tile_set = SubResource("TileSet_2itg8")
 y_sort_origin = -1
 use_kinematic_bodies = true
 navigation_enabled = false
-navigation_visibility_mode = 1
 script = ExtResource("3_71j4m")
 metadata/_custom_type_script = "uid://dsimiic0faq4i"
 
