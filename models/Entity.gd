@@ -15,12 +15,12 @@ class_name Entity
 var current_scale: Vector2 = Vector2(1, 1)
 var animated_sprite: AnimatedSprite2D
 
+
 func _ready():
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.sprite_frames = sprite_frames
 	animated_sprite.play("walk-down")
 	animated_sprite.stop()
-
 
 	set_entity_scale(current_scale)  # Aplicar la escala inicial
 

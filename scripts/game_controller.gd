@@ -27,6 +27,8 @@ func _ready():
 	world = WORLD_SCENE.instantiate()
 	add_child(world)
 
+	Global.initialize(world)
+
 	_spawn_player()
 
 	_create_camera()
@@ -68,22 +70,19 @@ func _spawn_player():
 func _spawn_monsters():
 	print("Add some enemies")
 
-	_spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
+	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
 	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 2)
 	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 3)
-	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 11)
-	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 11)
-	# _spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 11)
 
 	_spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
-	# _spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
-	# _spawn_enemies_in_direction(Vector2.UP)     # Arriba
-	# _spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
+	_spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
+	_spawn_enemies_in_direction(Vector2.UP)     # Arriba
+	_spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
 
 func _spawn_enemies_in_direction(direction: Vector2):
 	var TILES_DISTANCE = 7
 	var MAX_NOISE = 64
-	var NUM_ENEMIES = 125
+	var NUM_ENEMIES = 10
 
 	for i in range(NUM_ENEMIES):
 		# Generar ruido independiente para x e y
