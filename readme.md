@@ -32,6 +32,10 @@ If you have any questions, feel free to reach out!
 
 ## 📸 Screenshots
 
+- 2025-03-11
+- Fix moving of enemies + add health bar + improve navigation region with obstacle
+![alt text](image-5.png)
+
 - 2025-03-10
 - Enemies are walking correctly, but there is a little issue which they can walk across no walkable zones
 ![alt text](image-3.png)
