@@ -1,9 +1,9 @@
 extends Node
 
-var world: Node2D
-var navigation_region: NavigationRegion2D
+static var world: Node2D
+static var navigation_region: NavigationRegion2D
+static var player: Player
 
-func initialize(_world: Node2D):
-    world = _world
-    navigation_region = _world.get_node("NavigationRegion2D")
+func initialize():
+    navigation_region = world.get_node("NavigationRegion2D")
     # print(navigation)

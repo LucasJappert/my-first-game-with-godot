@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://crt0phxtng3aa"]
+
+[ext_resource type="PackedScene" uid="uid://bsim032vmyuhn" path="res://scenes/entity_scene.tscn" id="1_lne1l"]
+[ext_resource type="Script" uid="uid://dkvott574m1ak" path="res://scripts/enemy_scene.gd" id="2_8a8l7"]
+
+[node name="enemy_scene" instance=ExtResource("1_lne1l")]
+script = ExtResource("2_8a8l7")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="CollisionShape2D" index="0"]
+path_postprocessing = 1
+avoidance_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 0, 0, 1)
+
+[node name="Timer" type="Timer" parent="." index="4"]
+wait_time = 0.5
+autostart = true
+
+[connection signal="navigation_finished" from="CollisionShape2D/NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="target_reached" from="CollisionShape2D/NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="velocity_computed" from="CollisionShape2D/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

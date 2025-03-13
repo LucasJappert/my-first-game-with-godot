@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsim032vmyuhn"]
+
+[ext_resource type="Script" uid="uid://bwqhus6r3xrj8" path="res://scripts/entity/entity_scene.gd" id="1_2d4lj"]
+[ext_resource type="SpriteFrames" uid="uid://dsrotv4pmrr5r" path="res://resources/sprite-frames/player.tres" id="1_k3jbw"]
+[ext_resource type="Script" uid="uid://c5ekq4iqot1gc" path="res://scripts/entity/combat.gd" id="3_pllkq"]
+[ext_resource type="Script" uid="uid://d2bfobrp07un4" path="res://scripts/entity/physical_attack.gd" id="4_8gcqd"]
+[ext_resource type="Script" uid="uid://2o7lj4txum67" path="res://scripts/entity/ui_overlay.gd" id="5_8gcqd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2d4lj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_idfl5"]
+radius = 62.0081
+
+[sub_resource type="LabelSettings" id="LabelSettings_idfl5"]
+
+[node name="EntityScene" type="CharacterBody2D"]
+script = ExtResource("1_2d4lj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+z_as_relative = false
+texture_filter = 1
+sprite_frames = ExtResource("1_k3jbw")
+animation = &"walk-down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(0, 20)
+shape = SubResource("CircleShape2D_2d4lj")
+debug_color = Color(1.70864e-06, 0.560261, 0.309016, 0.42)
+
+[node name="Combat" type="Node" parent="."]
+script = ExtResource("3_pllkq")
+
+[node name="PhysicalAttack" type="Node" parent="Combat"]
+script = ExtResource("4_8gcqd")
+
+[node name="PhysicalAttackArea" type="Area2D" parent="Combat/PhysicalAttack"]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Combat/PhysicalAttack/PhysicalAttackArea"]
+position = Vector2(0, 17)
+shape = SubResource("CircleShape2D_idfl5")
+debug_color = Color(0.908936, 9.62615e-07, 0.5174, 0.42)
+
+[node name="UIOverlay" type="Node" parent="."]
+script = ExtResource("5_8gcqd")
+
+[node name="HealthBar" type="ProgressBar" parent="UIOverlay"]
+z_index = 2
+offset_left = -63.0
+offset_top = -67.0
+offset_right = 69.0
+offset_bottom = -34.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="UIOverlay"]
+offset_left = -19.0
+offset_top = 32.0
+offset_right = 21.0
+offset_bottom = 55.0
+label_settings = SubResource("LabelSettings_idfl5")
+horizontal_alignment = 1
+vertical_alignment = 1

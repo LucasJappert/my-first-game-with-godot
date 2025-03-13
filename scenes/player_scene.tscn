@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://e7ri388xayx8"]
+
+[ext_resource type="PackedScene" uid="uid://bsim032vmyuhn" path="res://scenes/entity_scene.tscn" id="1_crmta"]
+[ext_resource type="Script" uid="uid://4g77dsa3v6s0" path="res://scripts/player_scene.gd" id="2_vefth"]
+
+[node name="player_scene" instance=ExtResource("1_crmta")]
+script = ExtResource("2_vefth")
