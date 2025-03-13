@@ -14,4 +14,4 @@ func _ready():
 
 	MyCamera.create_camera()
 
-	# Enemy.spawn_monsters()
+	Enemy.spawn_monsters()
