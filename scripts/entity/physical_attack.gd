@@ -14,8 +14,9 @@ func initialize(_combat: Node):
     if _collision_shape.shape is CircleShape2D:
         _collision_shape.shape.radius = physical_attack_range
 
-func _process(_delta: float):
+func process(_delta: float):
     _collision_shape.global_position = combat.entity.collision_shape.global_position
+    return
 
 func try_attack():
     if not Input.is_action_pressed("physical_attack"):

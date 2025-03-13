@@ -10,12 +10,10 @@ var entity: Entity
 
 func initialize(_entity: Entity):
     entity = _entity
-    # Set the attack area
-    
     physical_attack.initialize(self)
 
-func _process(_delta: float) -> void:
-    physical_attack._process(_delta) 
+func process(_delta: float):
+    physical_attack.process(_delta) 
 
 func try_physical_attack():
     physical_attack.try_attack()

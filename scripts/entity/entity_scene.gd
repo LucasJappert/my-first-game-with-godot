@@ -16,39 +16,46 @@ class_name Entity
 
 var current_scale: Vector2 = Vector2(1, 1)
 var animated_sprite: AnimatedSprite2D
+var entity_type = Enums.EntityType.PLAYER
 
 
 func _ready():
-    collision_area_start_position = Vector2(0, 20)
-    animated_sprite = $AnimatedSprite2D
-    animated_sprite.sprite_frames = sprite_frames
-    animated_sprite.play("walk-down")
-    animated_sprite.stop()
+    if not animated_sprite:
+        set_animated_sprite(Enums.AnimationType.WALK_DOWN)
 
-    set_entity_scale(current_scale)  # Aplicar la escala inicial
+    # collision_area_start_position = Vector2(0, 20)
+
+    _set_entity_scale(current_scale)
 
     combat.initialize(self)
 
     ui_overlay.initialize(self)
 
-func set_entity_scale(scale_factor: Vector2):
+func set_animated_sprite(animation_type: String):
     animated_sprite = $AnimatedSprite2D
+    animated_sprite.sprite_frames = sprite_frames
+    animated_sprite.play(animation_type)
+    if entity_type != Enums.EntityType.MOOMOO:
+        animated_sprite.stop()
 
+func _set_entity_scale(scale_factor: Vector2):
     animated_sprite.scale.x *= scale_factor.x
     animated_sprite.scale.y *= scale_factor.y
-    collision_shape.scale.x *= scale_factor.x
-    collision_shape.scale.y *= scale_factor.y
-    collision_shape.position.x = collision_area_start_position.x * scale_factor.x
-    collision_shape.position.y = collision_area_start_position.y * scale_factor.y
+    # collision_shape.scale.x *= scale_factor.x
+    # collision_shape.scale.y *= scale_factor.y
+    # collision_shape.position.x = collision_area_start_position.x * scale_factor.x
+    # collision_shape.position.y = collision_area_start_position.y * scale_factor.y
 
 func _process(_delta: float) -> void:
     ui_overlay._process(_delta)
-    pass
+    print("Entity type: ", entity_type)
+    if entity_type == Enums.EntityType.ENEMY:
+        combat.process(_delta)
     # z_index = int(position.y)  # Ordena los objetos según el eje Y
 
 func update_after_physics_process():
     if velocity != Vector2.ZERO:
-        animated_sprite.play("walk-down")
+        animated_sprite.play(Enums.AnimationType.WALK_DOWN)
     else:
         animated_sprite.stop()
 
@@ -58,7 +65,6 @@ func update_after_physics_process():
         animated_sprite.flip_h = current_direction.x < 0
 
 
-# Función para manejar la muerte
 func die():
     print("Entity died")
     queue_free()  # Elimina la entidad del juego

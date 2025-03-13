@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://htbadc0jtcsh"]
+
+[ext_resource type="PackedScene" uid="uid://bsim032vmyuhn" path="res://scenes/entity_scene.tscn" id="1_1ly1y"]
+[ext_resource type="Script" uid="uid://d2sl3hxph8ian" path="res://scripts/moo-moo_scene.gd" id="2_ubpq8"]
+[ext_resource type="SpriteFrames" uid="uid://dwl80rspao62c" path="res://resources/sprite-frames/moo-moo.tres" id="3_r24fq"]
+
+[node name="MooMoo" instance=ExtResource("1_1ly1y")]
+script = ExtResource("2_ubpq8")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(0, -35)
+sprite_frames = ExtResource("3_r24fq")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+
+[node name="CollisionShape2D" parent="Combat/PhysicalAttack/PhysicalAttackArea" index="0"]
+position = Vector2(0, 0)
+
+[node name="HealthBar" parent="UIOverlay" index="0"]
+offset_left = -61.0
+offset_top = -125.0
+offset_right = 71.0
+offset_bottom = -92.0
+
+[node name="Label" parent="UIOverlay" index="1"]
+offset_left = -47.0
+offset_top = 3.0
+offset_right = 47.0
+offset_bottom = 26.0

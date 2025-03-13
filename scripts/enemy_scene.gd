@@ -13,6 +13,7 @@ var current_target_position: Vector2
 var target_reached = false
 
 func _ready():
+	entity_type = Enums.EntityType.ENEMY
 	super._ready()
 	speed = 100
 
@@ -27,7 +28,7 @@ func _ready():
 	nav_agent.path_desired_distance = TARGET_DESIRED_DISTANCE * 0.5
 
 func _process(_delta: float):
-	combat._process(_delta)
+	# combat.process(_delta)
 	return
 
 func _physics_process(_delta: float):
@@ -42,13 +43,16 @@ func _physics_process(_delta: float):
 	super.update_after_physics_process()
 
 func _on_timer_timeout():
-	var player_position = Global.player.collision_shape.global_position
-	var distance = global_position.distance_to(player_position)
+	if not Global.moomoo:
+		return
+
+	var target_position = Global.moomoo.collision_shape.global_position
+	var distance = global_position.distance_to(target_position)
 	if distance > TARGET_DESIRED_DISTANCE:
-		current_target_position = player_position
+		current_target_position = target_position
 		target_reached = false
 		nav_agent.avoidance_enabled = true
-		nav_agent.set_target_position(player_position)
+		nav_agent.set_target_position(target_position)
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2):
 	if safe_velocity.length() > 0.1:  # Evita movimientos espasmódicos
@@ -71,17 +75,17 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 static func spawn_monsters():
 	print("Add some enemies")
 
-	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
+	Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
 	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 2)
 	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 3)
 
-	_spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
-	_spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
-	_spawn_enemies_in_direction(Vector2.UP)     # Arriba
-	_spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
+	# _spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
+	# _spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
+	# _spawn_enemies_in_direction(Vector2.UP)     # Arriba
+	# _spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
 
 static func _spawn_enemies_in_direction(direction: Vector2):
-	var TILES_DISTANCE = 7
+	var TILES_DISTANCE = 10
 	var MAX_NOISE = 64
 	var NUM_ENEMIES = 10
 

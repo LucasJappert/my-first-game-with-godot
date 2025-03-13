@@ -10,8 +10,11 @@ func _ready():
 
 	Global.initialize()
 
+	MooMoo.spawn_moo_moo()
+
 	Player.spawn_player()
 
 	MyCamera.create_camera()
 
 	Enemy.spawn_monsters()
+

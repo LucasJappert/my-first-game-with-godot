@@ -5,3 +5,9 @@
 
 [node name="player_scene" instance=ExtResource("1_crmta")]
 script = ExtResource("2_vefth")
+
+[node name="Label" parent="UIOverlay" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1.0
+offset_bottom = 23.0

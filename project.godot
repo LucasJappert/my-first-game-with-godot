@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://scripts/global.gd"
 CameraController="*res://scripts/camera/camera_controller.gd"
 KeyboardController="*res://scripts/game-controllers/keyboard_controller.gd"
+Enums="*res://scripts/globals/enums.gd"
 
 [display]
 

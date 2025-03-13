@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dwl80rspao62c"]
+
+[ext_resource type="Texture2D" uid="uid://c7v0lqb66uppf" path="res://assets/monsters/monsters_tileset.png" id="1_82dub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82dub"]
+atlas = ExtResource("1_82dub")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kuiy"]
+atlas = ExtResource("1_82dub")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sc2d"]
+atlas = ExtResource("1_82dub")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6ipv"]
+atlas = ExtResource("1_82dub")
+region = Rect2(384, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5kbs"]
+atlas = ExtResource("1_82dub")
+region = Rect2(512, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c67yv"]
+atlas = ExtResource("1_82dub")
+region = Rect2(640, 256, 128, 128)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82dub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kuiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sc2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6ipv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5kbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c67yv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

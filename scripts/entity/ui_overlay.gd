@@ -1,7 +1,7 @@
 extends Node
 
 @onready var _health_bar: ProgressBar = $HealthBar
-# @onready var _label: Label = $Label
+@onready var _label: Label = $Label
 var entity: Entity
 
 func initialize(_entity: Entity):
@@ -18,10 +18,27 @@ func initialize(_entity: Entity):
 
         _health_bar.max_value = entity.combat.max_health
         _health_bar.value = entity.combat.current_health
+    
+
+    var lb_style = StyleBoxFlat.new()
+    lb_style.bg_color = Color(0, 0, 0, 0.2)
+    _label.add_theme_stylebox_override("normal", lb_style)
 
 func _process(_delta: float):
     var global_position = entity.global_position
     _health_bar.global_position = Vector2(global_position.x - _health_bar.size.x / 2, global_position.y - 40)
+
+    try_update_label()
+
+func try_update_label():
+    if not _label.text:
+        _label.visible = false
+        return
+
+    _label.visible = true
+    _label.global_position.x = entity.collision_shape.global_position.x - _label.size.x / 2
+    _label.global_position.y = entity.collision_shape.global_position.y + entity.collision_shape.shape.get_rect().size.y / 2
+    # _label.text = str(entity.collision_shape.global_position)
 
 func increment_health_bar(value: int):
     _health_bar.value += value
