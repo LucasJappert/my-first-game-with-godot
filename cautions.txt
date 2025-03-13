@@ -1,0 +1,2 @@
+
+- Tener cuidado cuando tenemos una clase base con un metodo _process() y luego de la hija declaramos tambien un metodo _process(). Haciando esto se pisará lo que ejecuta la clase base.

@@ -31,6 +31,7 @@ func _process(_delta: float):
     try_update_label()
 
 func try_update_label():
+    _label.text = str(int(_health_bar.value))
     if not _label.text:
         _label.visible = false
         return
@@ -38,7 +39,6 @@ func try_update_label():
     _label.visible = true
     _label.global_position.x = entity.collision_shape.global_position.x - _label.size.x / 2
     _label.global_position.y = entity.collision_shape.global_position.y + entity.collision_shape.shape.get_rect().size.y / 2
-    # _label.text = str(entity.collision_shape.global_position)
 
 func increment_health_bar(value: int):
     _health_bar.value += value

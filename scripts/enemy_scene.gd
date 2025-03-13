@@ -14,7 +14,6 @@ var target_reached = false
 
 func _ready():
 	entity_type = Enums.EntityType.ENEMY
-	super._ready()
 	speed = 100
 
 	nav_agent = collision_shape.get_node("NavigationAgent2D")
@@ -26,10 +25,7 @@ func _ready():
 	nav_agent.max_neighbors = 10 # Máximo de enemigos a considerar para evitar
 	nav_agent.target_desired_distance = TARGET_DESIRED_DISTANCE
 	nav_agent.path_desired_distance = TARGET_DESIRED_DISTANCE * 0.5
-
-func _process(_delta: float):
-	# combat.process(_delta)
-	return
+	super._ready()
 
 func _physics_process(_delta: float):
 	if not Global.player:
@@ -40,7 +36,7 @@ func _physics_process(_delta: float):
 		var intended_velocity = axis * speed
 		nav_agent.set_velocity(intended_velocity)
 
-	super.update_after_physics_process()
+	update_after_physics_process()
 
 func _on_timer_timeout():
 	if not Global.moomoo:
@@ -75,14 +71,14 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 static func spawn_monsters():
 	print("Add some enemies")
 
-	Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
+	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-230, 200), 1)
 	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 2)
 	# Enemy.spawn_enemy(ENEMY1_SPRITE_FRAMES, Vector2(-200, 200), 3)
 
-	# _spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
-	# _spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
-	# _spawn_enemies_in_direction(Vector2.UP)     # Arriba
-	# _spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
+	_spawn_enemies_in_direction(Vector2.LEFT)   # Izquierda
+	_spawn_enemies_in_direction(Vector2.RIGHT)  # Derecha
+	_spawn_enemies_in_direction(Vector2.UP)     # Arriba
+	_spawn_enemies_in_direction(Vector2.DOWN)   # Abajo
 
 static func _spawn_enemies_in_direction(direction: Vector2):
 	var TILES_DISTANCE = 10

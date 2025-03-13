@@ -12,7 +12,7 @@ func _ready():
     super.set_animated_sprite(Enums.AnimationType.IDLE)
 
     super._ready()
-
+    
     global_position = Vector2(0, 0)
 
 static func spawn_moo_moo():

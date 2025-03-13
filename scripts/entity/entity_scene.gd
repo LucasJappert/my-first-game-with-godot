@@ -16,10 +16,11 @@ class_name Entity
 
 var current_scale: Vector2 = Vector2(1, 1)
 var animated_sprite: AnimatedSprite2D
-var entity_type = Enums.EntityType.PLAYER
+var entity_type: int
 
 
 func _ready():
+    print("_ready entity")
     if not animated_sprite:
         set_animated_sprite(Enums.AnimationType.WALK_DOWN)
 
@@ -48,12 +49,16 @@ func _set_entity_scale(scale_factor: Vector2):
 
 func _process(_delta: float) -> void:
     ui_overlay._process(_delta)
-    print("Entity type: ", entity_type)
-    if entity_type == Enums.EntityType.ENEMY:
-        combat.process(_delta)
-    # z_index = int(position.y)  # Ordena los objetos según el eje Y
+    combat.process(_delta)
+
+    # Allow attacks for player and enemies (not moomoo)
+    if entity_type in [Enums.EntityType.ENEMY, Enums.EntityType.PLAYER]:
+        combat.try_physical_attack(self)
 
 func update_after_physics_process():
+    if not animated_sprite:
+        return
+
     if velocity != Vector2.ZERO:
         animated_sprite.play(Enums.AnimationType.WALK_DOWN)
     else:
@@ -63,7 +68,6 @@ func update_after_physics_process():
         # print("Direction changed from ", previous_direction, " to ", current_direction)
         previous_direction = current_direction
         animated_sprite.flip_h = current_direction.x < 0
-
 
 func die():
     print("Entity died")
